@@ -1,0 +1,34 @@
+# Purchase KPI Dashboard
+
+## Overview
+
+**Purchase KPI Dashboard** is an Odoo module that displays key Purchase Order statistics in a simple dashboard.
+It shows counts for Total, Draft,Sent, Confirmed, and Cancelled Purchase Orders with a customer filter.
+
+## Features
+
+* Customer/Vendor filter
+* KPI cards for Purchase Orders
+* Clickable cards to open filtered Purchase Order lists
+* Built using **Odoo OWL** and **Bootstrap**
+
+## KPIs Displayed
+
+* Total Purchase Orders
+* Draft Orders
+* Sent Orders
+* Confirmed Orders
+* Locked Orders
+* Cancelled Orders
+
+## Technologies
+
+* Odoo OWL
+* JavaScript (ES6)
+* QWeb / OWL Templates
+* Bootstrap
+
+## Requirement
+
+* Odoo 17+
+* Purchase module installed

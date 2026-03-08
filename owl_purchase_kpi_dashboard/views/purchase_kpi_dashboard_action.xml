@@ -1,0 +1,11 @@
+<odoo>
+
+    <!-- Client Action -->
+
+    <record id="action_purchase_kpi_dashboard" model="ir.actions.client">
+        <field name="name">Purchase KPI Dashboard</field>
+        <field name="tag">purchase_kpi_dashboard_action</field>
+    </record>
+    <menuitem id="purchase_kpi_root_menu" name="Purchase KPI Dashboard" sequence="15"/>
+    <menuitem id="menu_purchase_kpi_dashboard" name="Purchase KPI Dashboard" parent="purchase_kpi_root_menu" action="action_purchase_kpi_dashboard" sequence="16"/>
+</odoo>

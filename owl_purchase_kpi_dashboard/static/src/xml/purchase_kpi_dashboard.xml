@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="owl_purchase_kpi_dashboard.Dashboard">
+        <div class="p-4">
+            <div class="row mb-4">
+                <div class="col-4">
+                    <select t-on-change="onCustomerChange" class="form-control">
+                        <option value="">All Customers</option>
+                        <t t-foreach="state.customers" t-as="cust" t-key="cust.id">
+                            <option t-att-value="cust.id">
+                                <t t-esc="cust.name" />
+                            </option>
+                        </t>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-3">
+                    <div t-on-click="openTotal" class="card text-center">
+                        <div class="card-body">
+                            <h5>Total PO</h5>
+                            <h2>
+                                <t t-esc="state.totalPO" />
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div t-on-click="openDraft" class="card text-center bg-warning">
+                        <div class="card-body">
+                            <h5>Draft</h5>
+                            <h2>
+                                <t t-esc="state.draftPO" />
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div t-on-click="openSent" class="card text-center bg-primary">
+                        <div class="card-body">
+                            <h5>Sent</h5>
+                            <h2>
+                                <t t-esc="state.totalsent" />
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div t-on-click="openConfirm" class="card text-center bg-success">
+                        <div class="card-body">
+                            <h5>Confirmed</h5>
+                            <h2>
+                                <t t-esc="state.confirmPO" />
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div t-on-click="openDone" class="card text-center bg-secondary">
+                        <div class="card-body">
+                            <h5>Locked</h5>
+                            <h2>
+                                <t t-esc="state.totaldone" />
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div t-on-click="openCancel" class="card text-center bg-danger">
+                        <div class="card-body">
+                            <h5>Cancelled</h5>
+                            <h2>
+                                <t t-esc="state.cancelPO" />
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
