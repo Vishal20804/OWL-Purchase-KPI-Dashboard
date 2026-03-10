@@ -25,6 +25,8 @@ export class PurchaseKPIDashboard extends Component {
 
         this.loadCustomers();
         this.loadKPI();
+        this.loadChartData();
+
     }
 
 
@@ -80,7 +82,23 @@ export class PurchaseKPIDashboard extends Component {
         this.state.totalsent = sent;
         this.state.totaldone = done;
     }
+    async loadChartData() {
 
+        let domain = [];
+
+        if (this.state.selectedCustomer) {
+            domain.push(["partner_id","=",this.state.selectedCustomer]);
+        }
+
+        const result = await this.orm.readGroup(
+            "purchase.order",
+            domain,
+            ["amount_total:sum","id:count"],
+            ["state"]
+        );
+
+        this.renderPieChart(result);
+    }
 
     async onCustomerChange(ev) {
 
@@ -88,8 +106,56 @@ export class PurchaseKPIDashboard extends Component {
         this.state.selectedCustomer = value ? parseInt(value) : null;
 
         await this.loadKPI();
+        this.loadChartData();
+
     }
 
+    renderPieChart(data) {
+
+        const labels = [];
+        const values = [];
+
+        data.forEach(item => {
+
+            labels.push(item.state + " (" + item.state_count + ")");
+
+            values.push(item.amount_total);
+
+        });
+
+        const ctx = document.getElementById("poPieChart");
+
+        if (this.pieChart) {
+            this.pieChart.destroy();
+        }
+
+        this.pieChart = new Chart(ctx, {
+            type: "pie",
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: values
+                }]
+            }
+        });  
+
+        const barchart = document.getElementById("poBarChart");
+
+        if (this.barchart) {
+            this.barchart.destroy();
+        }
+
+        this.barchart = new Chart(barchart, {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: values
+                }]
+            }
+        });
+
+    }
 
     openPO(domainExtra = []) {
 
